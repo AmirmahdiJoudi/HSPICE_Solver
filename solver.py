@@ -5,7 +5,7 @@
 # build_g_j_vectors is a method to make g and j matrices
 # print_matrices is a method to print g and j matrices
 # get_node_index is a method to give proper index for each node
-# solve is a method for solving equations using np.linalg.solv
+# solve is a method for solving equations using spsolve
 # display_results is a method to show the node voltages
 # circuit.export_matrices_to_csv is a method to export g and j matrices as csv file (output is large!)
 
