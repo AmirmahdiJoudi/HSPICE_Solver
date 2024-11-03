@@ -8,6 +8,7 @@ HSPICE_Solver is a Python-based tool designed to solve circuits described in HSP
 - [Usage](#usage)
 - [Code Structure](#code-structure)
 - [Benchmarking](#benchmarking)
+- [Performance](#performance)
 
 ## Installation
 
@@ -80,6 +81,11 @@ The `benchmarks` directory includes various benchmark files:
 - `.sp` files: HSPICE circuit definitions.
 - `.log` files: Outputs from the solver.
 - `.ic0` files: Outputs from HSPICE.
-- `.png` files: Scatter plots comparing results from HSPICE and the solver (generated with `scatter_plot.py`) like this:.
+- `.png` files: Scatter plots comparing results from HSPICE and the solver (generated with `scatter_plot.py`) like this:
 - ![Alt Text](benchmarks/real-circuit-data/testcase1/scatter.png)
 
+## Performance
+
+The `timing data` directory includes run-time analysis of solver with different benchmarks:
+- ![Alt Text](timing data/timing_data.png)
+- ![Alt Text](timing data/timing.png)
