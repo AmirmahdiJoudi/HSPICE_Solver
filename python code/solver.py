@@ -13,6 +13,7 @@ import numpy as np
 from scipy.sparse import lil_matrix
 from scipy.sparse.linalg import spsolve
 import csv
+import time
 
 class CircuitSolver:
     def __init__(self):
@@ -113,12 +114,48 @@ class CircuitSolver:
         print("Node Voltages:")
         for node, index in self.nodes.items():
             print(f"V({node}) = {voltages[index - 1]:.4f} V")
+    
+    def get_num_nodes(self):
+        return self.num_nodes
 
-# Example usage:
-circuit = CircuitSolver()
-circuit.parse_netlist('./benchmarks/real-circuit-data/testcase1/netlist.sp')
-circuit.build_g_j_vectors()
-# circuit.print_matrices()
-voltages = circuit.solve()
-circuit.display_results(voltages)
-# circuit.export_matrices_to_csv("./benchmarks/real-circuit-data/testcase1/netlist.csv")  
+# # Example usage:
+# circuit = CircuitSolver()
+# circuit.parse_netlist('./benchmarks/real-circuit-data/testcase18/netlist.sp')
+# circuit.build_g_j_vectors()
+# # circuit.print_matrices()
+# voltages = circuit.solve()
+# circuit.display_results(voltages)
+# # circuit.export_matrices_to_csv("./benchmarks/real-circuit-data/testcase1/netlist.csv")  
+# print(circuit.get_num_nodes())
+
+repetitions = 20
+elapsed_time_total = 0
+elapsed_time_netlist_parser = 0
+elapsed_time_matrices_builder = 0
+elapsed_time_solver = 0
+elapsed_time_printing = 0
+for i in range(0, repetitions):
+    start_time_total = time.perf_counter()
+    circuit = CircuitSolver()
+    circuit.parse_netlist('./benchmarks/real-circuit-data/testcase18/netlist.sp')
+    end_time_netlist_parser = time.perf_counter()
+    circuit.build_g_j_vectors()
+    end_time_matrices_builder = time.perf_counter()
+    # circuit.print_matrices()
+    voltages = circuit.solve()
+    end_time_solver = time.perf_counter()
+    circuit.display_results(voltages)
+    # circuit.export_matrices_to_csv("./benchmarks/real-circuit-data/testcase1/netlist.csv")  
+    end_time_total = time.perf_counter()
+    elapsed_time_total += (end_time_total-start_time_total)
+    elapsed_time_netlist_parser += (end_time_netlist_parser-start_time_total)
+    elapsed_time_matrices_builder += (end_time_matrices_builder-end_time_netlist_parser)
+    elapsed_time_solver += (end_time_solver-end_time_matrices_builder)
+    elapsed_time_printing += (end_time_total-end_time_solver)
+
+print(circuit.get_num_nodes())
+print(f"Solver Parser Time: {elapsed_time_netlist_parser/repetitions:.6f} seconds")
+print(f"Solver Matrices Builder Time: {elapsed_time_matrices_builder/repetitions:.6f} seconds")
+print(f"Solver Solving Time: {elapsed_time_solver/repetitions:.6f} seconds")
+print(f"Solver Results Printing Time: {elapsed_time_printing/repetitions:.6f} seconds")
+print(f"Solver Total Time: {elapsed_time_total/repetitions:.6f} seconds")
