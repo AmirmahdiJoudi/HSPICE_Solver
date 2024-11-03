@@ -87,5 +87,5 @@ The `benchmarks` directory includes various benchmark files:
 ## Performance
 
 The `timing data` directory includes run-time analysis of solver with different benchmarks:
-- ![Alt Text](timing\data/timing_data.png)
-- ![Alt Text](timing\data/timing.png)
+- ![Alt Text](timing%20data/timing_data.png)
+- ![Alt Text](timing%20data/timing.png)
