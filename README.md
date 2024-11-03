@@ -16,14 +16,8 @@ HSPICE_Solver is a Python-based tool designed to solve circuits described in HSP
 To get started, clone this repository:
 
 ```bash
-git clone https://github.com/your_username/HSPICE_Solver.git
+git clone https://github.com/AmirmahdiJoudi/HSPICE_Solver.git
 cd HSPICE_Solver
-```
-
-Make sure you have Python installed along with the necessary libraries. You can install required packages using:
-
-```bash
-pip install -r requirements.txt
 ```
 
 ## Usage
@@ -90,10 +84,3 @@ The `benchmarks` directory includes various benchmark files:
 - `.ic0` files: Outputs from HSPICE.
 - `.png` files: Scatter plots comparing results from HSPICE and the solver (generated with `scatter_plot.py`).
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
